@@ -1,54 +1,37 @@
-/Applications/CLion.app/Contents/bin/cmake/mac/bin/cmake -DCMAKE_BUILD_TYPE=Debug -DCMAKE_CXX_COMPILER=/usr/local/Cellar/gcc/10.2.0/bin/gcc-10 -G "CodeBlocks - Unix Makefiles" /Users/gurjyan/Devel/Ersap/ersap-demo
-CMake Warning at /Applications/CLion.app/Contents/bin/cmake/mac/share/cmake-3.19/Modules/Platform/Darwin-Initialize.cmake:303 (message):
-  Ignoring CMAKE_OSX_SYSROOT value:
-
-   /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX11.1.sdk
-
-  because the directory does not exist.
-Call Stack (most recent call first):
-  /Applications/CLion.app/Contents/bin/cmake/mac/share/cmake-3.19/Modules/CMakeSystemSpecificInitialize.cmake:21 (include)
-  CMakeLists.txt:2 (project)
-
-
+/Applications/CLion.app/Contents/bin/cmake/mac/bin/cmake -DCMAKE_BUILD_TYPE=Debug -DCMAKE_CXX_COMPILER=/usr/local/Cellar/gcc/10.2.0/bin/gcc-10 -G "CodeBlocks - Unix Makefiles" /Users/gurjyan/Devel/Ersap/ersap/ersap-demo
 -- The C compiler identification is AppleClang 12.0.5.12050022
 -- The CXX compiler identification is GNU 10.2.0
 -- Detecting C compiler ABI info
--- Detecting C compiler ABI info - failed
--- Check for working C compiler: /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/cc
--- Check for working C compiler: /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/cc - broken
-CMake Error at /Applications/CLion.app/Contents/bin/cmake/mac/share/cmake-3.19/Modules/CMakeTestCCompiler.cmake:66 (message):
-  The C compiler
+-- Detecting C compiler ABI info - done
+-- Check for working C compiler: /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/cc - skipped
+-- Detecting C compile features
+-- Detecting C compile features - done
+-- Checking whether CXX compiler has -isysroot
+-- Checking whether CXX compiler has -isysroot - yes
+-- Checking whether CXX compiler supports OSX deployment target flag
+-- Checking whether CXX compiler supports OSX deployment target flag - yes
+-- Detecting CXX compiler ABI info
+-- Detecting CXX compiler ABI info - done
+-- Check for working CXX compiler: /usr/local/Cellar/gcc/10.2.0/bin/gcc-10 - skipped
+-- Detecting CXX compile features
+-- Detecting CXX compile features - done
+CMake Error at CMakeLists.txt:49 (find_package):
+  By not providing "FindErsap.cmake" in CMAKE_MODULE_PATH this project has
+  asked CMake to find a package configuration file provided by "Ersap", but
+  CMake did not find one.
 
-    "/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/cc"
+  Could not find a package configuration file provided by "Ersap" with any of
+  the following names:
 
-  is not able to compile a simple test program.
+    ErsapConfig.cmake
+    ersap-config.cmake
 
-  It fails with the following output:
-
-    Change Dir: /Users/gurjyan/Devel/Ersap/ersap-demo/cmake-build-debug/CMakeFiles/CMakeTmp
-    
-    Run Build Command(s):/usr/local/bin/gmake cmTC_0ae43/fast && /usr/local/bin/gmake  -f CMakeFiles/cmTC_0ae43.dir/build.make CMakeFiles/cmTC_0ae43.dir/build
-    gmake[1]: Entering directory '/Users/gurjyan/Devel/Ersap/ersap-demo/cmake-build-debug/CMakeFiles/CMakeTmp'
-    Building C object CMakeFiles/cmTC_0ae43.dir/testCCompiler.c.o
-    /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/cc    -o CMakeFiles/cmTC_0ae43.dir/testCCompiler.c.o -c /Users/gurjyan/Devel/Ersap/ersap-demo/cmake-build-debug/CMakeFiles/CMakeTmp/testCCompiler.c
-    Linking C executable cmTC_0ae43
-    /Applications/CLion.app/Contents/bin/cmake/mac/bin/cmake -E cmake_link_script CMakeFiles/cmTC_0ae43.dir/link.txt --verbose=1
-    /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/cc -Wl,-search_paths_first -Wl,-headerpad_max_install_names CMakeFiles/cmTC_0ae43.dir/testCCompiler.c.o -o cmTC_0ae43 
-    ld: library not found for -lSystem
-    clang: error: linker command failed with exit code 1 (use -v to see invocation)
-    gmake[1]: *** [CMakeFiles/cmTC_0ae43.dir/build.make:106: cmTC_0ae43] Error 1
-    gmake[1]: Leaving directory '/Users/gurjyan/Devel/Ersap/ersap-demo/cmake-build-debug/CMakeFiles/CMakeTmp'
-    gmake: *** [Makefile:140: cmTC_0ae43/fast] Error 2
-    
-    
-
-  
-
-  CMake will not be able to correctly generate this project.
-Call Stack (most recent call first):
-  CMakeLists.txt:2 (project)
+  Add the installation prefix of "Ersap" to CMAKE_PREFIX_PATH or set
+  "Ersap_DIR" to a directory containing one of the above files.  If "Ersap"
+  provides a separate development package or SDK, be sure it has been
+  installed.
 
 
 -- Configuring incomplete, errors occurred!
-See also "/Users/gurjyan/Devel/Ersap/ersap-demo/cmake-build-debug/CMakeFiles/CMakeOutput.log".
-See also "/Users/gurjyan/Devel/Ersap/ersap-demo/cmake-build-debug/CMakeFiles/CMakeError.log".
+See also "/Users/gurjyan/Devel/Ersap/ersap/ersap-demo/cmake-build-debug/CMakeFiles/CMakeOutput.log".
+See also "/Users/gurjyan/Devel/Ersap/ersap/ersap-demo/cmake-build-debug/CMakeFiles/CMakeError.log".
