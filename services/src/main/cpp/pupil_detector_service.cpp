@@ -30,7 +30,7 @@ ersap::EngineData PupilDetectorService::configure(ersap::EngineData& input)
     //
     // (This service is actually stateless, so detector_ could just simply be
     // initialized in the service constructor).
-    std::atomic_store(&detector_, std::make_shared<JanaEngine>());
+    std::atomic_store(&engine_, std::make_shared<JanaEngine>());
     return {};
 }
 
@@ -50,7 +50,7 @@ ersap::EngineData PupilDetectorService::execute(ersap::EngineData& input)
 
     // This always loads the shared_pointer into a new shared_ptr
 //    std::atomic_load(&detector_)->run(img.mat);
-    std::atomic_load(&detector_)->process();
+    std::atomic_load(&engine_)->process();
 
     // Set and return output data
     output.set_data(IMAGE_TYPE, img);
