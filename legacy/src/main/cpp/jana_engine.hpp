@@ -3,11 +3,11 @@
 
 #include <string>
 
-namespace cv {
-
-class Mat;
-
-} // end namespace cv
+//namespace cv {
+//
+//class Mat;
+//
+//} // end namespace cv
 
 
 namespace ersap {
@@ -19,12 +19,12 @@ namespace demo {
 class JanaEngine
 {
 public:
-    /**
-     * Runs the detector on the given image.
-     *
-     * @param img the input image
-     */
-    void run(cv::Mat& img);
+//    /**
+//     * Runs the detector on the given image.
+//     *
+//     * @param img the input image
+//     */
+//    void run(cv::Mat& img);
     void process();
 };
 
