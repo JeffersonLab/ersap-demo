@@ -48,8 +48,8 @@ ersap::EngineData PupilDetectorService::execute(ersap::EngineData& input)
     auto& img = ersap::data_cast<Image>(input);
 
     // This always loads the shared_pointer into a new shared_ptr
-//    std::atomic_load(&detector_)->run(img.mat);
-    std::atomic_load(&detector_)->process();
+    std::atomic_load(&detector_)->run(img.mat);
+//    std::atomic_load(&detector_)->process();
 
     // Set and return output data
     output.set_data(IMAGE_TYPE, img);

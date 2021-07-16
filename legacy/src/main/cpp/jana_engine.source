@@ -1,4 +1,4 @@
-#include "jana_engine.hpp"
+#include "jana_engine.header"
 #include <iostream>
 
 namespace ersap {
