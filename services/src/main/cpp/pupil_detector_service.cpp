@@ -53,7 +53,7 @@ ersap::EngineData PupilDetectorService::execute(ersap::EngineData& input)
     std::atomic_load(&detector_)->process();
 
     // Set and return output data
-    output.set_data(IMAGE_TYPE, img);
+//    output.set_data(IMAGE_TYPE, img);
     return output;
 }
 
