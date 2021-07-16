@@ -1,7 +1,7 @@
 // Program to detect pupil, based on
 // https://github.com/bsdnoobz/opencv-code/blob/master/pupil-detect.cpp
 
-#include "pupil_detector.hpp"
+#include "jana_engine.hpp"
 
 #include <opencv2/imgproc/imgproc.hpp>
 #include <opencv2/highgui/highgui.hpp>
@@ -12,13 +12,13 @@
 namespace ersap {
 namespace demo {
 
-void PupilDetector::run(cv::Mat& img)
+void JanaEngine::run(cv::Mat& img)
 {
     if (img.empty()) {
         return;
     }
 
-    std::cout << "\nRunning PupilDetector" << std::endl;
+    std::cout << "\nRunning JanaEngine" << std::endl;
 
     // Invert the source image and convert to grayscale
     cv::Mat gray;
@@ -53,7 +53,7 @@ void PupilDetector::run(cv::Mat& img)
     std::cout << "Detected " << counter << " pupils" << std::endl;
 }
 
-    void PupilDetector::process()
+    void JanaEngine::process()
     {
         std::cout << "processing..." << std::endl;
     }

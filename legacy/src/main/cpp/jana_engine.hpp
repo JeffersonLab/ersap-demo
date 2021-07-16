@@ -16,7 +16,7 @@ namespace demo {
 /**
  * Writes a circle around detected pupils in a given image.
  */
-class PupilDetector
+class JanaEngine
 {
 public:
     /**

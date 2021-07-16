@@ -9,7 +9,7 @@
 namespace ersap {
 namespace demo {
 
-class PupilDetector;
+class JanaEngine;
 
 class PupilDetectorService : public ersap::Engine
 {
@@ -48,7 +48,7 @@ public:
     std::string version() const override;
 
 private:
-    std::shared_ptr<PupilDetector> detector_{};
+    std::shared_ptr<JanaEngine> detector_{};
 };
 
 } // end namespace demo

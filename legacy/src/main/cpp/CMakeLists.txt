@@ -1,9 +1,9 @@
 set(LEGACY_SRC
-  pupil_detector.cpp
+        jana_engine.cpp
 )
 
 set(LEGACY_HEADERS
-  pupil_detector.hpp
+        jana_engine.hpp
 )
 
 add_library(demo_legacy SHARED ${LEGACY_SRC})
