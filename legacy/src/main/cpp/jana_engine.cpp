@@ -7,5 +7,6 @@ namespace ersap {
         void JanaEngine::process() {
             std::cout << "Running Jana Processor" << std::endl;
         }
+
     } // end namespace demo
 } // end namespace ersap
