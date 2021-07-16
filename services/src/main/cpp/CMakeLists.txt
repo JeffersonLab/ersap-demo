@@ -1,6 +1,6 @@
 # Create one shared library per service
 set(DEMO_SERVICES
-  pupil_detector_service
+  pupil_detector_service jana_service
 )
 
 foreach(service ${DEMO_SERVICES})
