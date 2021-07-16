@@ -90,13 +90,13 @@ std::string JanaService::name() const
 
 std::string JanaService::author() const
 {
-    return "Sebastián Mancilla";
+    return "Vardan Gyurjyan";
 }
 
 
 std::string JanaService::description() const
 {
-    return "Writes a circle around detected pupils in a given image";
+    return "Jana based service example";
 }
 
 

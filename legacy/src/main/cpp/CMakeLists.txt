@@ -1,9 +1,5 @@
 set(LEGACY_SRC
-        jana_engine.cpp
-)
-
-set(LEGACY_HEADERS
-        jana_engine.hpp
+        jana_engine
 )
 
 add_library(demo_legacy SHARED ${LEGACY_SRC})
