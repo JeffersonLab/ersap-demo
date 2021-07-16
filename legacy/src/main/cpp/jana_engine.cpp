@@ -4,11 +4,11 @@
 #include <iostream>
 
 namespace ersap {
-namespace jana {
+namespace demo {
 
     void JanaEngine::process()
     {
         std::cout << "processing..." << std::endl;
     }
-} // end namespace jana
+} // end namespace demo
 } // end namespace ersap

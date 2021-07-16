@@ -4,7 +4,7 @@
 #include <string>
 
 namespace ersap {
-namespace jana {
+namespace demo {
 
 class JanaEngine
 {
@@ -12,7 +12,7 @@ public:
     void process();
 };
 
-} // end namespace jana
+} // end namespace demo
 } // end namespace ersap
 
 #endif
