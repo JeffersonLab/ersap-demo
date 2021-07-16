@@ -183,3 +183,8 @@ files (each containing many images):
     requests, pass the `-t <NUM_THREADS>` option.
 
  6. Inspect the output files in the output directory.
+
+
+## Example
+
+<a href="https://asciinema.org/a/VkSg1qWC7nAFpa8Wii3LeJ21r" target="_blank"><img src="https://asciinema.org/a/VkSg1qWC7nAFpa8Wii3LeJ21r.svg" width="600"/></a>

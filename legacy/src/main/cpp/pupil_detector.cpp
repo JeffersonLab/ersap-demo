@@ -52,9 +52,6 @@ void PupilDetector::run(cv::Mat& img)
 
     std::cout << "Detected " << counter << " pupils" << std::endl;
 }
-    void PupilDetector::process()
-    {
-        std::cout << "Process..." << std::endl;
-    }
+
 } // end namespace demo
 } // end namespace ersap
