@@ -30,7 +30,7 @@ ersap::EngineData PupilDetectorService::configure(ersap::EngineData& input)
     //
     // (This service is actually stateless, so detector_ could just simply be
     // initialized in the service constructor).
-    std::atomic_store(&detector_, std::make_shared<PupilDetector>());
+    std::atomic_store(&detector_, std::make_shared<JanaEngine>());
     return {};
 }
 
