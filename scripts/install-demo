@@ -1,0 +1,49 @@
+#!/usr/bin/env bash
+
+# Build and install demo services into "$ERSAP_HOME".
+# If "$ERSAP_HOME" is not defined, then "<demo_root>/ersap" will be used.
+#
+# Usage:
+#
+#   $ export OpenCV_ROOT=/opt/opencv3       # optional (see "install-opencv" script)
+#   $ export ERSAP_HOME=~/dev/ersap-home    # optional
+#   $ ./scripts/install-demo
+
+demo_dir=$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)
+build_dir=$demo_dir/build
+
+# check ERSAP_HOME
+if [ -z "$ERSAP_HOME" ]; then
+    echo "ERSAP_HOME is not set."
+    export ERSAP_HOME="$demo_dir/ersap"
+    echo "Using ERSAP_HOME=\"$ERSAP_HOME\""
+fi
+
+# check CMake
+if ! command -v cmake > /dev/null 2>&1; then
+    cat << EOF >&2
+Please install the CMake build tool.
+EOF
+    exit 1;
+fi
+
+mkdir -p "$build_dir" ||
+    { echo "Could not create \"$build_dir\""; exit 1; }
+
+cd "$demo_dir" || exit 1
+echo "Building demo..."
+
+gradle_cmd=(./gradlew)
+# shellcheck disable=2154
+if [ -n "$OpenCV_ROOT" ]; then
+    gradle_cmd+=("-PopencvDir=$OpenCV_ROOT")
+fi
+
+cmake_cmd=(cmake)
+if [ -n "$OpenCV_ROOT" ]; then
+    cmake_cmd+=("-DOpenCV_ROOT=$OpenCV_ROOT")
+fi
+cmake_cmd+=("$demo_dir")
+
+( "${gradle_cmd[@]}" && "${gradle_cmd[@]}" deploy ) &&
+( cd "$build_dir" && rm -f CMakeCache.txt && "${cmake_cmd[@]}" && make && make install )

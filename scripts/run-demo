@@ -1,0 +1,37 @@
+#!/usr/bin/env bash
+
+# Run the demo services processing the example dataset.
+#
+# If "$ERSAP_HOME" is not defined, then "<demo_root>/ersap" will be used.
+#
+# Usage:
+#
+#   $ export OpenCV_ROOT=/opt/opencv3       # optional (see "install-opencv" script)
+#   $ export ERSAP_HOME=~/dev/ersap-home    # optional
+#   $ ./scripts/run-demo
+
+demo_dir=$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)
+
+if [ -z "$ERSAP_HOME" ]; then
+    echo "ERSAP_HOME is not set."
+    export ERSAP_HOME="$demo_dir/ersap"
+    echo "Using ERSAP_HOME=\"$ERSAP_HOME\""
+fi
+
+# shellcheck disable=2154
+if [ -n "$OpenCV_ROOT" ]; then
+    case "$(uname)" in
+        "Linux")
+            export LD_LIBRARY_PATH=${LD_LIBRARY_PATH:+$LD_LIBRARY_PATH:}$OpenCV_ROOT
+            ;;
+        "Darwin")
+            export DYLD_LIBRARY_PATH=${DYLD_LIBRARY_PATH:+$DYLD_LIBRARY_PATH:}$OpenCV_ROOT
+            ;;
+        *)
+            ;;
+    esac
+fi
+
+cd "$demo_dir" || exit 1
+
+"$ERSAP_HOME/bin/ersap-shell" demo.ersap

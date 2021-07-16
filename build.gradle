@@ -1,0 +1,238 @@
+plugins {
+    id 'com.github.spotbugs' version '4.2.2' apply false
+}
+
+ext {
+    // dependencies
+    ersapMavenRepo = 'https://clasweb.jlab.org/clas12maven/'
+
+    libs = [
+        ersap: 'org.jlab.coda:jersap:4.3-SNAPSHOT',
+        zip4j: 'net.lingala.zip4j:zip4j:1.3.3',
+        jupiter_api: 'org.junit.jupiter:junit-jupiter-api:5.6.2',
+        jupiter_engine: 'org.junit.jupiter:junit-jupiter-engine:5.6.2',
+        hamcrest: 'org.hamcrest:hamcrest:2.2',
+    ]
+
+    // try to find OpenCV
+    def baseDirs = [ '/usr/local/opt/opencv3', '/opt/opencv3', '/usr/local', '/usr']
+    if (System.getenv('ERSAP_HOME') != null) {
+        baseDirs.push "$System.env.ERSAP_HOME"
+    }
+    def javaDir = '/share/OpenCV/java/'
+    if (!project.hasProperty('opencvDir')) {
+        opencvDir = baseDirs.find { new File(it + javaDir).exists() }
+        if (opencvDir == null) {
+            throw new GradleException('Missing OpenCV install directory. Set the \'opencvDir\' property.')
+        }
+    }
+    opencvJavaDir = opencvDir + javaDir
+}
+
+allprojects {
+    group = 'org.jlab.ersap.demo'
+
+    defaultTasks 'build'
+}
+
+//////////////////////////////////////////////////////////////////////////////
+// all subprojects
+//////////////////////////////////////////////////////////////////////////////
+
+subprojects {
+    apply plugin: 'java-library'
+    apply plugin: 'maven-publish'
+
+    apply plugin: 'checkstyle'
+    apply plugin: 'com.github.spotbugs'
+
+    apply plugin: 'eclipse'
+    apply plugin: 'idea'
+
+    sourceCompatibility = JavaVersion.VERSION_1_8
+    targetCompatibility = JavaVersion.VERSION_1_8
+
+    configurations {
+        testImplementation.extendsFrom compileOnly
+    }
+
+    repositories {
+        mavenCentral()
+    }
+
+    dependencies {
+        testImplementation libs.jupiter_api
+        testRuntimeOnly libs.jupiter_engine
+        testImplementation libs.hamcrest
+    }
+
+    java {
+        withSourcesJar()
+        withJavadocJar()
+    }
+
+    tasks.withType(JavaCompile) {
+        if (JavaVersion.current() > JavaVersion.VERSION_1_8) {
+            options.compilerArgs += ['--release', '8']
+        }
+    }
+
+    javadoc {
+        options.charSet = 'utf8'
+        options.encoding = 'utf8'
+        options.docEncoding = 'utf8'
+        options.addStringOption('Xdoclint:none', '-quiet')
+    }
+
+    test {
+        testLogging {
+            exceptionFormat = 'full'
+        }
+        systemProperty 'java.library.path', opencvJavaDir
+    }
+
+    task allDeps(type: DependencyReportTask) {}
+
+    task allDepInsight(type: DependencyInsightReportTask) doLast {}
+}
+
+//////////////////////////////////////////////////////////////////////////////
+// specific subprojects
+//////////////////////////////////////////////////////////////////////////////
+
+project(':legacy') {
+    archivesBaseName = 'demo-legacy'
+    version = '0.1-SNAPSHOT'
+
+    dependencies {
+        api fileTree(dir: opencvJavaDir)
+        implementation libs.zip4j
+    }
+}
+
+project(':data') {
+    archivesBaseName = 'demo-data'
+    version = '0.1-SNAPSHOT'
+
+    repositories {
+        maven {
+            url ersapMavenRepo
+        }
+    }
+
+    dependencies {
+        compileOnly libs.ersap
+        implementation project(':legacy')
+    }
+}
+
+project(':services') {
+    archivesBaseName = 'demo-services'
+    version = '0.1-SNAPSHOT'
+
+    repositories {
+        maven {
+            url ersapMavenRepo
+        }
+    }
+
+    dependencies {
+        compileOnly libs.ersap
+        implementation project(':legacy')
+        implementation project(':data')
+    }
+}
+
+//////////////////////////////////////////////////////////////////////////////
+// service deployment
+//////////////////////////////////////////////////////////////////////////////
+
+project(':services') {
+    def deploySpec = copySpec {
+        into ('plugins/demo/lib') {
+            from configurations.runtimeClasspath
+        }
+        into ('plugins/demo/services') {
+            from jar
+        }
+    }
+
+    task deploy(type: Copy, dependsOn: jar) {
+        def dest = "$System.env.ERSAP_HOME"
+
+        into dest
+        with deploySpec
+
+        doFirst {
+            if (dest == 'null') {
+                throw new GradleException('ERSAP_HOME not set')
+            }
+        }
+    }
+}
+
+//////////////////////////////////////////////////////////////////////////////
+// quality check
+//////////////////////////////////////////////////////////////////////////////
+
+subprojects {
+    checkstyle {
+        toolVersion = '8.32'
+        configFile = rootProject.file('config/quality/checkstyle.xml')
+        configProperties['samedir'] = rootProject.file('config/quality')
+    }
+
+    spotbugs {
+        toolVersion = '4.0.3'
+        ignoreFailures = true
+        effort = 'default'
+        reportLevel = 'medium'
+        excludeFilter = rootProject.file('config/quality/findbugs-exclude.xml')
+    }
+
+    tasks.withType(com.github.spotbugs.snom.SpotBugsTask) {
+        reports {
+            xml.enabled = false
+            html.enabled = true
+        }
+    }
+
+    task spotbugs {
+        group = 'Verification'
+        description = 'Marker task to enable SpotBugs.'
+    }
+
+    gradle.taskGraph.whenReady { taskGraph ->
+        tasks.spotbugsMain.onlyIf { taskGraph.hasTask(tasks.spotbugs) }
+        tasks.spotbugsTest.onlyIf { taskGraph.hasTask(tasks.spotbugs) }
+    }
+}
+
+//////////////////////////////////////////////////////////////////////////////
+// IDE configuration
+//////////////////////////////////////////////////////////////////////////////
+
+subprojects {
+    // Make sure Eclipse finds OpenCV native libraries
+    eclipse {
+        classpath {
+            file {
+                whenMerged { classpath ->
+                    //remove all native libraries from direct dependencies
+                    classpath.entries.removeAll { entry ->
+                        entry.kind == 'lib' &&
+                            (entry.path.endsWith('.dll')
+                                || entry.path.endsWith('.so')
+                                || entry.path.endsWith('.dylib'))
+                    }
+                    //but add them as native libraries
+                    classpath.entries.each { entry ->
+                        if (entry.kind == 'lib' && entry.path.contains('opencv')) {
+                            entry.setNativeLibraryLocation(opencvJavaDir)
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
