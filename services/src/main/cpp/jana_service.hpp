@@ -1,6 +1,3 @@
-//
-// Created by Vardan Gyurjyan on 1/28/21.
-//
 
 #ifndef ERSAP_JANA_JANA_SERVICE_HPP
 #define ERSAP_JANA_JANA_SERVICE_HPP

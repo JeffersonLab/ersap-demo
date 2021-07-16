@@ -1,8 +1,6 @@
-//
-// Created by Vardan Gyurjyan on 1/28/21.
-//
 
 #include "jana_service.hpp"
+#include <jana_engine.hpp>
 #include <ersap/stdlib/json_utils.hpp>
 
 #include <cmath>
