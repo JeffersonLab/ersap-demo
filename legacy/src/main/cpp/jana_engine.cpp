@@ -4,7 +4,7 @@
 #include <iostream>
 
 namespace ersap {
-namespace demo {
+namespace jana {
 
     void JanaEngine::process()
     {

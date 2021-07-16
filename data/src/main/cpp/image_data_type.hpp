@@ -6,7 +6,7 @@
 #include <ersap/engine_data_type.hpp>
 
 namespace ersap {
-namespace demo {
+namespace jana {
 
 using byte_t = std::uint8_t;
 using bytes_t = std::vector<byte_t>;

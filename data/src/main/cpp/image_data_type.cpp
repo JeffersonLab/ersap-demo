@@ -4,7 +4,7 @@
 #include <iostream>
 
 namespace ersap {
-namespace demo {
+namespace jana {
 
 const int IMG_META_SIZE = 5 * sizeof(std::int32_t);
 

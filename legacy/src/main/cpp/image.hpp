@@ -6,7 +6,7 @@
 #include <string>
 
 namespace ersap {
-namespace demo {
+namespace jana {
 
 struct Image
 {

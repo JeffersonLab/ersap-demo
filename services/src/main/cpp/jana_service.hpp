@@ -7,7 +7,7 @@
 #include <memory>
 
 namespace ersap {
-namespace demo {
+namespace jana {
 
 class JanaEngine;
 

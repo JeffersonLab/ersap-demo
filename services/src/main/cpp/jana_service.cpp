@@ -16,7 +16,7 @@ std::unique_ptr<ersap::Engine> create_engine()
 
 
 namespace ersap {
-namespace demo {
+namespace jana {
 
 ersap::EngineData JanaService::configure(ersap::EngineData& input)
 {
