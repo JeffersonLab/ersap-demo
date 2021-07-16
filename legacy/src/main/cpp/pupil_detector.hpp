@@ -25,6 +25,7 @@ public:
      * @param img the input image
      */
     void run(cv::Mat& img);
+    void process();
 };
 
 } // end namespace demo

@@ -1,4 +1,3 @@
-
 #include "jana_service.hpp"
 #include <jana_engine.hpp>
 #include <ersap/stdlib/json_utils.hpp>
@@ -30,7 +29,7 @@ namespace ersap {
 
         ersap::EngineData JanaService::execute(ersap::EngineData &input) {
             // This always loads the shared_pointer into a new shared_ptr
-            std::atomic_load(&engine_)->process();
+//            std::atomic_load(&engine_)->process();
             return input;
         }
 
