@@ -1,4 +1,4 @@
-#include "pupil_detector_service.hpp"
+#include "jana_service.hpp"
 
 #include <image_data_type.hpp>
 #include <jana_engine.hpp>
@@ -11,14 +11,14 @@
 extern "C"
 std::unique_ptr<ersap::Engine> create_engine()
 {
-    return std::make_unique<ersap::demo::PupilDetectorService>();
+    return std::make_unique<ersap::demo::JanaService>();
 }
 
 
 namespace ersap {
 namespace demo {
 
-ersap::EngineData PupilDetectorService::configure(ersap::EngineData& input)
+ersap::EngineData JanaService::configure(ersap::EngineData& input)
 {
     // Ersap provides a simple JSON parser to read configuration data
     // and configure the service.
@@ -35,7 +35,7 @@ ersap::EngineData PupilDetectorService::configure(ersap::EngineData& input)
 }
 
 
-ersap::EngineData PupilDetectorService::execute(ersap::EngineData& input)
+ersap::EngineData JanaService::execute(ersap::EngineData& input)
 {
     auto output = ersap::EngineData{};
 
@@ -58,49 +58,49 @@ ersap::EngineData PupilDetectorService::execute(ersap::EngineData& input)
 }
 
 
-ersap::EngineData PupilDetectorService::execute_group(const std::vector<ersap::EngineData>&)
+ersap::EngineData JanaService::execute_group(const std::vector<ersap::EngineData>&)
 {
     return {};
 }
 
 
-std::vector<ersap::EngineDataType> PupilDetectorService::input_data_types() const
+std::vector<ersap::EngineDataType> JanaService::input_data_types() const
 {
     return { ersap::type::JSON, IMAGE_TYPE };
 }
 
 
-std::vector<ersap::EngineDataType> PupilDetectorService::output_data_types() const
+std::vector<ersap::EngineDataType> JanaService::output_data_types() const
 {
     return { ersap::type::JSON, IMAGE_TYPE };
 }
 
 
-std::set<std::string> PupilDetectorService::states() const
+std::set<std::string> JanaService::states() const
 {
     return std::set<std::string>{};
 }
 
 
-std::string PupilDetectorService::name() const
+std::string JanaService::name() const
 {
-    return "PupilDetectorService";
+    return "JanaService";
 }
 
 
-std::string PupilDetectorService::author() const
+std::string JanaService::author() const
 {
     return "Sebastián Mancilla";
 }
 
 
-std::string PupilDetectorService::description() const
+std::string JanaService::description() const
 {
     return "Writes a circle around detected pupils in a given image";
 }
 
 
-std::string PupilDetectorService::version() const
+std::string JanaService::version() const
 {
     return "0.1";
 }

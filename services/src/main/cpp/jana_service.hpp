@@ -11,18 +11,18 @@ namespace demo {
 
 class JanaEngine;
 
-class PupilDetectorService : public ersap::Engine
+class JanaService : public ersap::Engine
 {
 public:
-    PupilDetectorService() = default;
+    JanaService() = default;
 
-    PupilDetectorService(const PupilDetectorService&) = delete;
-    PupilDetectorService& operator=(const PupilDetectorService&) = delete;
+    JanaService(const JanaService&) = delete;
+    JanaService& operator=(const JanaService&) = delete;
 
-    PupilDetectorService(PupilDetectorService&&) = default;
-    PupilDetectorService& operator=(PupilDetectorService&&) = default;
+    JanaService(JanaService&&) = default;
+    JanaService& operator=(JanaService&&) = default;
 
-    ~PupilDetectorService() override = default;
+    ~JanaService() override = default;
 
 public:
     ersap::EngineData configure(ersap::EngineData&) override;
