@@ -53,7 +53,7 @@ void PupilDetector::run(cv::Mat& img)
     std::cout << "Detected " << counter << " pupils" << std::endl;
 }
 
-    void PupilDetector::run(cv::Mat& img)
+    void PupilDetector::process()
     {
         std::cout << "processing..." << std::endl;
     }
