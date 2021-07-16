@@ -11,4 +11,4 @@ foreach(service ${DEMO_SERVICES})
   endif()
 endforeach()
 
-install(TARGETS ${DEMO_SERVICES} DESTINATION ${CMAKE_INSTALL_PLUGINDIR}/demo/services)
+install(TARGETS ${DEMO_SERVICES} DESTINATION ${CMAKE_INSTALL_PLUGINDIR}/jana/services)

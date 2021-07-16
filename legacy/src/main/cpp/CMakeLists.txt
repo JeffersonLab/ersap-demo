@@ -8,4 +8,4 @@ target_include_directories(ersap_jana PUBLIC
   $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}>
 )
 
-install(TARGETS ersap_jana DESTINATION ${CMAKE_INSTALL_PLUGINDIR}/demo/lib)
+install(TARGETS ersap_jana DESTINATION ${CMAKE_INSTALL_PLUGINDIR}/jana/lib)
