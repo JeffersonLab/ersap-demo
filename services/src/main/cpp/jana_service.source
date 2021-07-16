@@ -1,4 +1,4 @@
-#include "jana_service.hpp"
+#include "jana_service.header"
 #include <jana_engine.hpp>
 #include <ersap/stdlib/json_utils.hpp>
 
