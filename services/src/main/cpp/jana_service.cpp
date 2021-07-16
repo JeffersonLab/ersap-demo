@@ -11,7 +11,7 @@
 extern "C"
 std::unique_ptr<ersap::Engine> create_engine()
 {
-    return std::make_unique<ersap::demo::JanaService>();
+    return std::make_unique<ersap::jana::JanaService>();
 }
 
 
