@@ -1,7 +1,7 @@
 
 #ifndef ERSAP_DEMO_JANA_ENGINE_H
 #define ERSAP_DEMO_JANA_ENGINE_H
-class janaEngine
+class JanaEngine
 {
 public:
     /**
