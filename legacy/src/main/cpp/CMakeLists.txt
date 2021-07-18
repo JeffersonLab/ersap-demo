@@ -1,11 +1,15 @@
 set(LEGACY_SRC
-        jana_engine
+  pupil_detector.cpp
 )
 
-add_library(ersap_jana SHARED ${LEGACY_SRC})
-target_link_libraries(ersap_jana PUBLIC ${OpenCV_LIBS})
-target_include_directories(ersap_jana PUBLIC
+set(LEGACY_HEADERS
+  pupil_detector.hpp
+)
+
+add_library(demo_legacy SHARED ${LEGACY_SRC})
+target_link_libraries(demo_legacy PUBLIC ${OpenCV_LIBS})
+target_include_directories(demo_legacy PUBLIC
   $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}>
 )
 
-install(TARGETS ersap_jana DESTINATION ${CMAKE_INSTALL_PLUGINDIR}/jana/lib)
+install(TARGETS demo_legacy DESTINATION ${CMAKE_INSTALL_PLUGINDIR}/demo/lib)

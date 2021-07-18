@@ -12,7 +12,7 @@ public:
     void process();
 };
 
-} // end namespace demo
+} // end namespace jana
 } // end namespace ersap
 
 #endif

@@ -7,22 +7,22 @@
 #include <memory>
 
 namespace ersap {
-namespace jana {
+namespace demo {
 
-class JanaEngine;
+class PupilDetector;
 
-class JanaService : public ersap::Engine
+class PupilDetectorService : public ersap::Engine
 {
 public:
-    JanaService() = default;
+    PupilDetectorService() = default;
 
-    JanaService(const JanaService&) = delete;
-    JanaService& operator=(const JanaService&) = delete;
+    PupilDetectorService(const PupilDetectorService&) = delete;
+    PupilDetectorService& operator=(const PupilDetectorService&) = delete;
 
-    JanaService(JanaService&&) = default;
-    JanaService& operator=(JanaService&&) = default;
+    PupilDetectorService(PupilDetectorService&&) = default;
+    PupilDetectorService& operator=(PupilDetectorService&&) = default;
 
-    ~JanaService() override = default;
+    ~PupilDetectorService() override = default;
 
 public:
     ersap::EngineData configure(ersap::EngineData&) override;
@@ -48,10 +48,10 @@ public:
     std::string version() const override;
 
 private:
-    std::shared_ptr<JanaEngine> engine_{};
+    std::shared_ptr<PupilDetector> detector_{};
 };
 
-} // end namespace jana
+} // end namespace demo
 } // end namespace ersap
 
 #endif

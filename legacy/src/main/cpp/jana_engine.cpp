@@ -10,5 +10,5 @@ namespace jana {
     {
         std::cout << "processing..." << std::endl;
     }
-} // end namespace demo
+} // end namespace jana
 } // end namespace ersap
